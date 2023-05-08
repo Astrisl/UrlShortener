@@ -1,0 +1,32 @@
+<div class="container">
+  <form #f="ngForm" [formGroup]="this.authForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input required
+        type="text"
+        name="name"
+        id="name"
+        class="form-control"
+        formControlName="name">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input required
+        type="password"
+        name="password"
+        id="password"
+        class="form-control"
+        formControlName="password">
+    </div>
+
+    <div class="container text-center mt-5">
+      <button class="btn btn-success" [disabled]="!this.authForm.valid" (click)="this.onSubmit()">
+        {{ this.isLoginMode ? 'login' : 'signup' }}
+      </button>
+      <span (click)="this.isLoginMode = !this.isLoginMode">
+        {{ this.isLoginMode ? 'no acc? sign up' : 'already have an acc? login' }}
+      </span>
+    </div>
+  </form>
+</div>

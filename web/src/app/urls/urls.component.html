@@ -1,0 +1,39 @@
+<header class="row mx-3 d-flex">
+  <div class="col-xs-6 col-sm-9 col-md-8" >
+    <div *ngIf="this.isAddNewMode" class="row">
+      <input
+        class="col-xs-4 col-sm-5 col-md-8"
+        [(ngModel)]="this.newUrl"
+        type="text"
+        placeholder="url...">
+      <div class="col-xs-8 col-sm-7 col-md-4">
+        <button class="mx-2 btn btn-success" (click)="this.onAddNewUrl()">Add</button>
+        <button class="mx-2 btn btn-danger" (click)="this.isAddNewMode = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6 col-sm-3 col-md-4 right text-end">
+    <button class="btn btn-info m-0" *ngIf="!this.isAddNewMode" (click)="this.isAddNewMode = true">Add new</button>
+    <button class="btn btn-danger m-0" (click)="this.onLogout()">Logout</button>
+  </div>
+</header>
+
+<div class="container">
+  <span *ngIf="this.urls.length === 0">No urls!</span>
+  <div *ngFor="let url of this.urls">
+    <div class="row">
+      <div class="col-3">
+        {{ url.shortenedUrl }}
+      </div>
+      <div class="col-4">
+        {{ url.realUrl }}
+      </div>
+      <div class="col-4">
+        {{ url.createdAt.toLocaleTimeString() }}
+      </div>
+      <div class="col-1">
+        <button class="btn btn-danger" (click)="this.onDelete(url.id)">rm</button>
+      </div>
+    </div>
+  </div>
+</div>
